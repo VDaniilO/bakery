@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Order List</h1>
+<a href="{% url 'create_order' %}">Create Order</a>
+<br><br>
+<table>
+  <tr>
+    <th>Person Name</th>
+    <th>Products</th>
+    <th>Is Ready</th>
+  </tr>
+  {% for order in orders %}
+    <tr>
+      <td>{{ order.person_name }}</td>
+      <td>
+        <ul>
+          {% for order_product in order.orderproduct_set.all %}
+            <li>{{ order_product.product }} x {{ order_product.quantity }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+  {% endfor %}
+</table>
+</body>
+</html>
